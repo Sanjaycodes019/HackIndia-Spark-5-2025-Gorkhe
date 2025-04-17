@@ -1,0 +1,35 @@
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
+.custom-div-icon {
+  background: none;
+  border: none;
+}
+
+/* Animation for active alert markers */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.custom-div-icon div {
+  transition: all 0.3s ease;
+}
+
+/* Apply pulse animation to active alert markers */
+.custom-div-icon[data-active="true"] div {
+  animation: pulse 2s infinite;
+} 
