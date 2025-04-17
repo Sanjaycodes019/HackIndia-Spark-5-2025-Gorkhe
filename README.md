@@ -3,7 +3,7 @@ A decentralized safety companion for women — blending AI, IPFS, and Ethereum b
 Also there is a safety assistant chatbot based on OOLAMA language model which gives answers to the problems/questions asked by woman in emergency situations.
 You can also ask for the location and contact details of nearby police stations, hospitals, woman helpline and other emergency services during emergency situations.
 
-
+## Working Demo Video Link : https://drive.google.com/file/d/1ZLRlsNCqmI8tNRxiNzXYzHBzy5a-xxd6/view?usp=sharing
 
 ## Features
 -Emergency SOS button for one-tap alerts
