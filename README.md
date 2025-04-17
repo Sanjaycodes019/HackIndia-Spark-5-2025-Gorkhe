@@ -1,36 +1,40 @@
-# SafeHer - AI & Blockchain-Powered Safety Companion for Women.
+# SafeHer
+A decentralized safety companion for women — blending AI, IPFS, and Ethereum blockchain to provide instant emergency alerts in danger with location to emergency contacts and these details are stored in blockchain based IPFS(Inter Planetary File Storage) which is tamper proof so that no one can alter it and becomes a proof in legal case.
+Also there is a safety assistant chatbot based on OOLAMA language model which gives answers to the problems/questions asked by woman in emergency situations.
+You can also ask for the location and contact details of nearby police stations, hospitals, woman helpline and other emergency services during emergency situations.
 
-SafeHer is a decentralized safety application designed to help women feel safer in their daily lives. It combines AI &blockchain technology, real-time location sharing, and emergency alerts to provide a reliable safety network.
 
-## What SafeHer Does
 
-SafeHer helps you stay safe by:
+## Features
+-Emergency SOS button for one-tap alerts
+-AI-powered chatbot to assist victims during panic powered using OOLAMA
+-Real-time location sharing with trusted/emergency contacts
+-Decentralized data storage using IPFS for tamper proof data helpful for legal matters
+-Immutable records on Ethereum blockchain
 
-- **Emergency SOS Button**: With one tap, you can alert your trusted contacts about an emergency
-- **Location Sharing**: Your real-time location is shared with emergency contacts when you trigger an alert
-- **Blockchain Security**: All alerts are stored on the Ethereum blockchain, making them tamper-proof
-- **IPFS Storage**: Emergency data is stored on IPFS (InterPlanetary File System) for decentralized access
-- **Email Notifications**: Your emergency contacts receive immediate email alerts
-- **Contact Management**: You can add, edit, and remove trusted contacts who will be notified in emergencies
 
-## How to Get Started
+## Tech Stack
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Blockchain**: Ethereum, MetaMask
+- **Storage**: IPFS (Pinata)
+- **Email**: EmailJS
+- **Database**: Supabase
+- **Maps**: Geoapify
+- **LLM** :OOLAMA (using fastapi of python)
 
-### Prerequisites
 
-Before you can use SafeHer, you need:
+## Prerequisites
+- Node.js (v16 or higher)
+- MetaMask browser extension
+- Ethereum wallet with test ETH
+- Pinata account for IPFS storage
+- EmailJS account for email alert
+- Supabase account for database
+- Geoapify API key for maps
 
-- A computer with Node.js (version 16 or higher)
-- The MetaMask browser extension (to connect to Ethereum)
-- An Ethereum wallet with some test ETH (for blockchain transactions)
-- Accounts for the following services:
-  - Pinata (for IPFS storage)
-  - EmailJS (for sending email alerts)
-  - Supabase (for database storage)
-  - Geoapify (for maps)
 
-### Setting Up Your Environment
-
-1. Create a file named `.env` in the main project folder with these settings:
+## Environment Variables
+Create a `.env` file in the root directory with the following variables:
 
 ```
 VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
@@ -43,114 +47,71 @@ VITE_PINATA_API_SECRET=your_pinata_api_secret
 VITE_PINATA_JWT=your_pinata_jwt
 VITE_IPFS_GATEWAY=your_ipfs_gateway
 VITE_GEOAPIFY_KEY=your_geoapify_key
-VITE_OPENROUTER_KEY=your_openrouter_key
 ```
+Links of the service:
+#https://app.pinata.cloud (IPFS storage supported by blockchain) 
 
-Replace the placeholder values with your actual API keys and credentials.
+#https://www.geoapify.com/
 
-### Installing SafeHer
+#https://www.emailjs.com/
 
-1. Download the project:
+#https://www.supabase.com
+
+
+
+
+## Installation
+
+1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/safe-haven-blockchain.git
-   cd safeher-blockchain
+   cd safeHer-blockchain
    ```
 
-2. Install the required software:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. Start the application:
+3. Start the development server:
    ```bash
-   npm run dev
-   ```
+npm run dev
+```
 
-4. Open your web browser and go to `http://localhost:5173`
+4.Deploy the LLM
+# cd LLM
+# python main.py
 
-## How to Use SafeHer
+Make sure OOLAMA is installed on your computer
+To install and serve OOLAMA model follow these steps:
 
-### Creating an Account
+# For Windows - download the installer from https://ollama.com/download
+# Run this command in terminal to pull OOLAMA Model:ollama pull mistral:7b(or any other model)
+#Install the required dependecies to serve modeal via fastapi
+ pip install fastapi uvicorn pydantic requests
+ or 
+ pip install -r requirements.txt
 
-1. Click "Create Account" on the home page
-2. Enter your email and create a password
-3. Your account will be created with basic information
+ The performance of LLM depends on your system.
 
-### Setting Up Your Profile
 
-1. After logging in, go to your profile settings
-2. Add your name, phone number, and other details
-3. Connect your Ethereum wallet if you want to use blockchain features
+## Smart Contract Deployment
 
-### Adding Emergency Contacts
-
-1. Go to the "Trusted Contacts" page
-2. Click "Add Contact"
-3. Enter your contact's name, phone number, email, and wallet address (optional)
-4. Toggle the "Emergency Contact" switch to make them an emergency contact
-5. Click "Add Contact" to save
-
-### Using the SOS Button
-
-1. On the Dashboard, you'll see a prominent SOS button
-2. In an emergency, press this button
-3. The system will:
-   - Record your current location
-   - Store the alert data on IPFS
-   - Record the alert on the Ethereum blockchain
-   - Send email notifications to your emergency contacts
-   - Show you a confirmation message
-
-### Viewing Alert History
-
-1. Go to the "Alerts" page
-2. You'll see a list of all your past alerts
-3. Each alert shows:
-   - When it was triggered
-   - Your location at the time
-   - The status (active or resolved)
-   - Who responded to the alert
-
-## Technical Details
-
-### Smart Contract
-
-SafeHer uses a blockchain smart contract to store alert data. The contract:
-- Creates a chain of blocks containing alert information
-- Stores IPFS content identifiers (CIDs) instead of the actual data
-- Ensures data integrity through cryptographic hashing
-- Makes alert records tamper-proof and verifiable
-
-### Data Storage
-
-- **IPFS**: Stores detailed alert data in a decentralized way
-- **Ethereum Blockchain**: Records alert hashes for verification
-- **Supabase**: Stores user profiles and contact information
-
-### Technologies Used
-
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **Blockchain**: Ethereum, MetaMask
-- **Storage**: IPFS (Pinata)
-- **Email**: EmailJS
-- **Database**: Supabase
-- **Maps**: Geoapify
+1. Make sure MetaMask is connected to the correct network
+2. Ensure you have enough ETH for gas fees
+3. Test the SOS button functionality on the Dashboard
+4. Verify that alerts are being stored on IPFS and the blockchain
+5. Check that emergency contacts are being notified
 
 ## Troubleshooting
 
-### Common Issues
+### IPFS Issues
+- Verify your Pinata API keys are correct
+- Check if the IPFS gateway is accessible
+- Ensure your data is properly formatted
 
-1. **SOS Button Not Working**
-   - Check if you're logged in
-   - Make sure your browser has permission to access your location
-   - Verify that MetaMask is connected to the correct network
-
-2. **Contacts Not Receiving Alerts**
-   - Check if your contacts have valid email addresses
-   - Verify that your EmailJS settings are correct
-   - Make sure your contacts are marked as emergency contacts
-
-3. **Blockchain Transactions Failing**
-   - Ensure you have enough ETH for gas fees
-   - Check if you're connected to the correct Ethereum network
-   - Verify that your MetaMask wallet is properly connected
+### Blockchain Issues
+- Make sure MetaMask is installed and connected
+- Verify you're on the correct network
+- Ensure you have enough ETH for gas fees
+- Check if the contract address is correct

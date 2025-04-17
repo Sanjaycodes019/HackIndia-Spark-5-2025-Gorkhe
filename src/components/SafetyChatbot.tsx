@@ -72,84 +72,50 @@ const SafetyChatbot = () => {
   }, [messages]);
 
   const fetchAIAdvice = async (question: string) => {
-    const apiKey = import.meta.env.VITE_OPENROUTER_KEY;
-    if (!apiKey) {
-      return "I'm sorry, but I can't provide advice right now due to a configuration issue. Please try the emergency services mode or contact emergency services directly if you need immediate help.";
-    }
-
+    // Use your FastAPI endpoint instead of OpenRouter
+    const apiUrl = "http://localhost:8000/chat"; // Change this if your API is hosted elsewhere
+    
     try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": window.location.origin,
-          "X-Title": "SafeHer Safety Assistant"
         },
         body: JSON.stringify({
-          model: "anthropic/claude-3-opus",
           messages: [
-            {
-              role: "system",
-              content: "You are a safety advisor. Provide brief, practical advice. Keep responses under 100 words."
-            },
             {
               role: "user",
               content: question
             }
           ],
-          temperature: 0.7,
-          max_tokens: 150
+          temperature: 0.3,
+          max_tokens: 1024
         })
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('OpenRouter API error:', errorData);
-        
-        if (errorData.error?.code === 402) {
-          return getFallbackResponse(question);
-        }
-        
-        throw new Error(errorData.error?.message || 'Failed to get AI response');
+        console.error('FastAPI error:', errorData);
+        throw new Error(errorData.detail || 'Failed to get AI response');
       }
 
       const data = await response.json();
-      
-      if (!data || !data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
-        return getFallbackResponse(question);
-      }
+      console.log('FastAPI response:', data);
 
-      const choice = data.choices[0];
-      if (!choice || !choice.message || !choice.message.content) {
-        return getFallbackResponse(question);
-      }
-
-      return choice.message.content;
+      // Return the content from the response
+      return data.content;
     } catch (error) {
       console.error('Error getting AI advice:', error);
-      return getFallbackResponse(question);
-    }
-  };
-
-  const getFallbackResponse = (question: string) => {
-    const lowerQuestion = question.toLowerCase();
-    
-    const safetyResponses: { [key: string]: string } = {
-      'walking': "When walking alone:\n1. Stay in well-lit areas\n2. Keep your phone charged\n3. Share your location with trusted contacts\n4. Be aware of your surroundings",
-      'night': "For night safety:\n1. Use well-lit routes\n2. Stay in populated areas\n3. Have emergency contacts ready\n4. Consider using a ride-sharing service",
-      'emergency': "In an emergency:\n1. Call emergency services (911)\n2. Use the SOS button in the app\n3. Share your location with trusted contacts\n4. Stay calm and follow instructions",
-      'travel': "When traveling:\n1. Share your itinerary with trusted contacts\n2. Keep important documents secure\n3. Have emergency numbers saved\n4. Use the app's location sharing feature",
-      'public': "In public places:\n1. Stay aware of your surroundings\n2. Keep valuables secure\n3. Have an exit plan\n4. Trust your instincts if something feels wrong"
-    };
-
-    for (const [keyword, response] of Object.entries(safetyResponses)) {
-      if (lowerQuestion.includes(keyword)) {
-        return response;
+      
+      // Specific error handling
+      if (error instanceof Error) {
+        if (error.message.includes('Failed to fetch')) {
+          return "I can't connect to the advice service right now. Please check your internet connection or try again later.";
+        }
       }
+      
+      return "I'm having trouble providing advice right now. If you need immediate help, please switch to emergency services mode or contact emergency services directly.";
     }
-
-    return "For your safety:\n1. Stay alert and aware of your surroundings\n2. Keep your phone charged and accessible\n3. Have emergency contacts ready\n4. Trust your instincts\n5. Use the SOS button if you feel unsafe\n\nFor immediate help, switch to Emergency Services mode or call emergency services.";
   };
 
   const findNearbyPlaces = async (category: string) => {
@@ -407,4 +373,4 @@ const SafetyChatbot = () => {
   );
 };
 
-export default SafetyChatbot; 
+export default SafetyChatbot;
