@@ -64,8 +64,8 @@ Links of the service:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/safe-haven-blockchain.git
-   cd safeHer-blockchain
+   git clone https://github.com/yourusername/SafeHer-Blockchain.git
+   cd SafeHer-Blockchain
    ```
 
 2. Install dependencies:
