@@ -3,6 +3,13 @@ A decentralized safety companion for women — blending AI, IPFS, and Ethereum b
 Also there is a safety assistant chatbot based on OOLAMA language model which gives answers to the problems/questions asked by woman in emergency situations.
 You can also ask for the location and contact details of nearby police stations, hospitals, woman helpline and other emergency services during emergency situations.
 
+# Spark5-Hackindia2025 project
+# Team Gorkhe
+- **Sanjay Gupta (Team Lead)**
+- **Samir Khanal**
+- **Gopal Singh**
+- **Sunil Shrestha**
+
 ## Working Demo Video Link : https://drive.google.com/file/d/1ZLRlsNCqmI8tNRxiNzXYzHBzy5a-xxd6/view?usp=sharing
 
 ## Features
@@ -31,7 +38,6 @@ You can also ask for the location and contact details of nearby police stations,
 - EmailJS account for email alert
 - Supabase account for database
 - Geoapify API key for maps
-
 
 ## Environment Variables
 Create a `.env` file in the root directory with the following variables:
