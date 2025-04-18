@@ -71,7 +71,7 @@ Links of the service:
 1. Clone the repository:
    ```bash
    git clone https://github.com/yourusername/SafeHer-Blockchain.git
-   cd SafeHer-Blockchain
+   cd HackIndia-Spark-5-2025-Gorkhe
    ```
 
 2. Install dependencies:
